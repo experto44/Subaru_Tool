@@ -8,13 +8,8 @@ dist/
 dist-ssr/
 *.local
 
-# capacitor / android native build artifacts
-android/app/build/
-android/build/
-android/.gradle/
-android/local.properties
-android/app/release/
-android/app/debug/
+# capacitor / android native project (generated fresh by `npx cap add android`)
+android/
 .gradle/
 
 # editor / os

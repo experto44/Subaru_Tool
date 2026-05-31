@@ -10,11 +10,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: true,
-    rollupOptions: {
-      // The classic-Bluetooth plugin is only present in the Android (Capacitor)
-      // build; the web build loads it lazily and degrades gracefully without it.
-      // Mark it external so the web bundle compiles when it isn't installed.
-      external: ['@e-is/capacitor-bluetooth-serial'],
-    },
   },
 })
