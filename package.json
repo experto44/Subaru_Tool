@@ -1,0 +1,23 @@
+{
+  "name": "subaru-tool",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Subaru Tool — modern OBD-II diagnostic app for Subaru (ELM327 Bluetooth). A technical re-implementation of Active OBD with a new responsive UI.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cap:sync": "cap sync",
+    "cap:android": "cap open android",
+    "android:build": "vite build && cap sync android"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.2"
+  }
+}

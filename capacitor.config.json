@@ -1,0 +1,11 @@
+{
+  "appId": "com.subarutool.app",
+  "appName": "Subaru Tool",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": true
+  },
+  "plugins": {
+    "CapacitorBluetoothSerial": {}
+  }
+}

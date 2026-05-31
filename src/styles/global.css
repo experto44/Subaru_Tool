@@ -1,0 +1,228 @@
+/* Subaru Tool — global styles, themes, animations.
+   Ported from the approved design prototype and adapted to a real,
+   responsive fullscreen app (portrait / landscape / tablet) instead of
+   the studio device-frame mockup. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg, #07080d);
+}
+
+body {
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  color: var(--text, #eef2fb);
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+.num {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.005em;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ---------- THEMES ---------- */
+[data-theme='carbon'] {
+  --bg: #070a12;
+  --bg-2: #0c1018;
+  --surface: #121826;
+  --surface-2: #1b2335;
+  --track: #222c40;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --text: #eef2fb;
+  --text-dim: #94a1bd;
+  --text-faint: #5d6b88;
+  --good: #2fd391;
+  --warn: #ffb020;
+  --bad: #ff5468;
+}
+
+[data-theme='daylight'] {
+  --bg: #eef1f7;
+  --bg-2: #e6eaf2;
+  --surface: #ffffff;
+  --surface-2: #eef1f7;
+  --track: #dce2ed;
+  --border: rgba(15, 30, 60, 0.09);
+  --border-strong: rgba(15, 30, 60, 0.18);
+  --text: #0f1726;
+  --text-dim: #566179;
+  --text-faint: #93a0b7;
+  --good: #12a06a;
+  --warn: #bd7c08;
+  --bad: #e23b54;
+}
+
+[data-theme='sport'] {
+  --bg: #05060c;
+  --bg-2: #0a0c16;
+  --surface: #10131f;
+  --surface-2: #181d2e;
+  --track: #1f2740;
+  --border: rgba(120, 160, 255, 0.1);
+  --border-strong: rgba(120, 160, 255, 0.22);
+  --text: #eaf2ff;
+  --text-dim: #8fa0c8;
+  --text-faint: #5a678c;
+  --good: #27e39b;
+  --warn: #ffc23d;
+  --bad: #ff4d6d;
+}
+
+/* ---------- layout helpers ---------- */
+.screen-pad {
+  padding: 16px 16px 26px;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+
+.mon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 8px;
+}
+
+.awd-cell {
+  grid-column: 1 / -1;
+}
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+.chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+.app-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--track) transparent;
+}
+.app-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+.app-scroll::-webkit-scrollbar-thumb {
+  background: var(--track);
+  border-radius: 4px;
+}
+.app-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card {
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.btn {
+  transition: transform 0.08s, filter 0.15s;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn:hover {
+  filter: brightness(1.08);
+}
+.reorder {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-faint);
+  font-size: 9px;
+  line-height: 1.1;
+  padding: 1px 2px;
+}
+.reorder:hover {
+  color: var(--accent);
+}
+input::placeholder {
+  color: var(--text-faint);
+}
+
+/* ---------- animations ---------- */
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(24px); opacity: 0.4; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideL {
+  from { transform: translateX(30px); opacity: 0.4; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes pop {
+  from { transform: scale(0.94); opacity: 0.5; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spin {
+  animation: spin 1.1s linear infinite;
+}
+@keyframes blink {
+  50% { opacity: 0.25; }
+}
+.blink {
+  animation: blink 1s ease-in-out infinite;
+}
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.55; }
+  70%, 100% { transform: scale(2.4); opacity: 0; }
+}
+.pulse-dot {
+  animation: pulseRing 1.8s ease-out infinite;
+}
+@keyframes pingExp {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.ping {
+  position: absolute;
+  width: 92px;
+  height: 92px;
+  border-radius: 26px;
+  background: var(--accent);
+  animation: pingExp 1.6s ease-out infinite;
+}
+
+/* fullscreen app root that adapts to orientation */
+.app-root {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
